@@ -1,0 +1,5 @@
+/.idea/
+/*.iml
+/infrastructure/.terraform/plugins/
+node_modules/
+/js/config/*.json

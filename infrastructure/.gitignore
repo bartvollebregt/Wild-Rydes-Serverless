@@ -1,0 +1,4 @@
+
+# Serverless directories
+api/.serverless
+auth/.serverless

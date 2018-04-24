@@ -1,0 +1,81 @@
+service: wild-rydes-auth
+
+plugins:
+  - serverless-stack-output
+
+custom:
+  output:
+    file: ../../js/config/auth_config.json
+  userPoolName: ${self:service}-${self:provider.stage}-user-pool
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: eu-west-1
+
+resources:
+  Resources:
+
+    UserPool:
+      Type: "AWS::Cognito::UserPool"
+      Properties:
+        UserPoolName: ${self:custom.userPoolName}
+        SmsVerificationMessage: "Your verification code is {####}."
+        AutoVerifiedAttributes:
+          - email
+        MfaConfiguration: "OFF"
+        EmailVerificationSubject: "Your Digispeaker verification code"
+        EmailVerificationMessage: "Your Digispeaker verification code is {####}."
+        SmsAuthenticationMessage: "Your Digispeaker authentication code is {####}."
+        Schema:
+          - Name: name
+            AttributeDataType: String
+            Mutable: true
+            Required: false
+          - Name: email
+            AttributeDataType: String
+            Mutable: false
+            Required: true
+          - Name: phone_number
+            AttributeDataType: String
+            Mutable: true
+            Required: false
+        Policies:
+          PasswordPolicy:
+            RequireLowercase: true
+            RequireSymbols: false
+            RequireNumbers: true
+            MinimumLength: 8
+            RequireUppercase: true
+        AdminCreateUserConfig:
+          InviteMessageTemplate:
+            EmailMessage: "Your Digispeaker username is {username} and temporary password is {####}."
+            EmailSubject: "Your temporary Digispeaker password"
+            SMSMessage: "Your Digispeaker username is {username} and temporary password is {####}."
+          UnusedAccountValidityDays: 7
+          AllowAdminCreateUserOnly: false
+
+    UserPoolClient:
+      Type: "AWS::Cognito::UserPoolClient"
+      Properties:
+        ClientName: ${self:service}-${self:provider.stage}-client
+        GenerateSecret: false
+        UserPoolId:
+            Ref: UserPool
+
+  Outputs:
+    userPoolArn:
+      Value:
+        Fn::GetAtt:
+          - UserPool
+          - Arn
+    userPoolId:
+      Value:
+        Ref: UserPool
+    userPoolClientId:
+      Value:
+        Ref: UserPoolClient
+    Region:
+      Value:
+        Ref: 'AWS::Region'
