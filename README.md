@@ -35,4 +35,4 @@ I've created a bash file at `infrastructure/infrastructure.sh` to simplify the d
 
 ## License
 
-terraform-aws-eb is released under the [MIT License](LICENSE).
+Wild Rydes Serverless is released under the [MIT License](LICENSE).
