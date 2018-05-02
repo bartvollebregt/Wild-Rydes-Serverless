@@ -8,6 +8,18 @@ export default class Rides {
         this._application = new WildRydes();
 
         this._map = new RidesMap(this, $("#map")[0]);
+
+        this._displayToken();
+
+    }
+
+    _displayToken() {
+        this._application.getAuth().getAuthToken().then((token) => {
+            if (token) {
+                this._displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
+                $('.authToken').text(token);
+            }
+        });
     }
 
     _requestUnicorn(pickupLocation) {
