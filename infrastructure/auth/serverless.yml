@@ -7,6 +7,7 @@ custom:
   output:
     file: ../../js/config/auth_config.json
   userPoolName: ${self:service}-${self:provider.stage}-user-pool
+  iotEndpoint: "a358nin3b22der.iot.eu-west-1.amazonaws.com"
 
 provider:
   name: aws
@@ -62,7 +63,42 @@ resources:
         ClientName: ${self:service}-${self:provider.stage}-client
         GenerateSecret: false
         UserPoolId:
-            Ref: UserPool
+          Ref: UserPool
+
+    UserGroupRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: ${self:service}-${self:provider.stage}-user-role
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - iot.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: "user-iot-role"
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - iot:Connect
+                    - iot:Subscribe
+                    - iot:Receive
+                  Resource: { "Fn::Join" : ["",["arn:aws:iot:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":topic/pushendpoint/"]] }
+
+    UserPoolUserGroup:
+      Type: "AWS::Cognito::UserPoolGroup"
+      Properties:
+        Description: "The Cognito User Group for User users"
+        GroupName: "User"
+        Precedence: 10
+        RoleArn:
+          Fn::GetAtt: UserGroupRole.Arn
+        UserPoolId:
+          Ref: UserPool
 
   Outputs:
     userPoolArn:

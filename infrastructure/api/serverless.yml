@@ -41,8 +41,8 @@ functions:
           method: POST
           integration: lambda
           cors: true
-          authorizer:
-            arn: ${self:custom.userPoolArn}
+#          authorizer:
+#            arn: ${self:custom.userPoolArn}
 
 resources:
   Resources:
