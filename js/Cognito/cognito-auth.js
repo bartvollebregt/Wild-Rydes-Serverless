@@ -20,10 +20,6 @@ export default class CognitoAuth {
         return this._authToken;
     }
 
-    get() {
-        return this._authToken;
-    }
-
     _register(email, password, onSuccess, onFailure) {
         const dataEmail = {
             Name: 'email',
