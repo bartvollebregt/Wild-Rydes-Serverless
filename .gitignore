@@ -2,5 +2,5 @@
 /*.iml
 /infrastructure/.terraform/plugins/
 node_modules/
-/js/Config/*.json
-/build/
+/src/js/Config/*.json
+/src/build/

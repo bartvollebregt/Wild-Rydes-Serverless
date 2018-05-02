@@ -3,6 +3,8 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 const glob = require("glob");
 
+__dirname = path.join(__dirname, "src");
+
 let vendor = ['bootstrap'];
 
 const entries = Object.assign(...glob.sync(path.join(__dirname, "js/Entry/*.js")).map(file =>
@@ -11,7 +13,10 @@ const entries = Object.assign(...glob.sync(path.join(__dirname, "js/Entry/*.js")
 	})
 ));
 
+
 module.exports = {
+    mode: 'development',
+
 	module: {
 		rules: [
 			{
@@ -42,7 +47,7 @@ module.exports = {
 	},
     devServer: {
         port: 8080,
-        contentBase: '.',
+        contentBase: path.resolve(__dirname),
         watchContentBase: true,
         inline: true
     },
@@ -72,5 +77,4 @@ module.exports = {
         }
     },
 
-	mode: 'development'
 };

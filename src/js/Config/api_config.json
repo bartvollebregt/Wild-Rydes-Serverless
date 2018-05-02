@@ -1,0 +1,6 @@
+{
+  "RequestUnicornLambdaFunctionQualifiedArn": "arn:aws:lambda:eu-west-1:702056794978:function:wild-rydes-api-dev-RequestUnicorn:15",
+  "Region": "eu-west-1",
+  "ServiceEndpoint": "https://oasl7tlpb9.execute-api.eu-west-1.amazonaws.com/dev",
+  "ServerlessDeploymentBucketName": "wild-rydes-api-dev-serverlessdeploymentbucket-1rx6gk7axn9fl"
+}
