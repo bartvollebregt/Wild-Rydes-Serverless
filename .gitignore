@@ -4,3 +4,5 @@
 node_modules/
 /src/js/Config/*.json
 /src/build/
+!/src/build/config/.keep
+/infrastructure/config.yml

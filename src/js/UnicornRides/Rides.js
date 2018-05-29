@@ -23,26 +23,31 @@ export default class Rides {
     }
 
     _requestUnicorn(pickupLocation) {
-        $.ajax({
-            method: 'POST',
-            url: this._application.getConfig().getInvokeUrl() + '/ride',
-            headers: {
-                Authorization: this._application.getAuth().getAuthToken()
-            },
-            data: JSON.stringify({
-                PickupLocation: {
-                    Latitude: pickupLocation.latitude,
-                    Longitude: pickupLocation.longitude
+        this._application.getAuth().getAuthToken().then((token) => {
+            $.ajax({
+                method: 'POST',
+                url: this._application.getConfig().getInvokeUrl() + '/ride',
+                headers: {
+                    Authorization: token
                 },
-                Rider: this._application.getAuth().getCurrentUser().username
-            }),
-            contentType: 'application/json',
-            success: (result) => this._completeRequest(result),
-            error: function ajaxError(jqXHR, textStatus, errorThrown) {
-                console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
-                console.error('Response: ', jqXHR.responseText);
-                alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
-            }
+                data: JSON.stringify({
+                    PickupLocation: {
+                        Latitude: pickupLocation.latitude,
+                        Longitude: pickupLocation.longitude
+                    },
+                    Rider: this._application.getAuth().getCurrentUser().username
+                }),
+                contentType: 'application/json',
+                success: (result) => this._completeRequest(result),
+                error: function ajaxError(jqXHR, textStatus, errorThrown) {
+                    console.error(jqXHR);
+                    console.error(textStatus);
+                    console.error(errorThrown);
+                    console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
+                    console.error('Response: ', jqXHR.responseText);
+                    alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
+                }
+            });
         });
     }
 
@@ -67,7 +72,7 @@ export default class Rides {
     }
 
     handleRequestClick(event) {
-        const pickupLocation = this._map.selectedLocation;
+        const pickupLocation = { latitude: this._map.selectedLocation.lat(), longitude: this._map.selectedLocation.lng()};
         event.preventDefault();
         this._requestUnicorn(pickupLocation);
     }

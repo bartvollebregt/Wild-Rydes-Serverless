@@ -47,7 +47,7 @@ exports.handler = (event, context, callback) => {
         // Because this Lambda function is called by an API Gateway proxy integration
         // the result object must use the following structure.
         callback(null, {
-        statusCode: 201,
+            statusCode: 201,
             body: JSON.stringify({
             RideId: rideId,
             Unicorn: unicorn,

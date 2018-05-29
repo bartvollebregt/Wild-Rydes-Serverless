@@ -1,0 +1,59 @@
+{
+  "body": {
+    "PickupLocation": {
+      "Latitude": 51.879882095410224,
+      "Longitude": 0.1043701171875
+    },
+    "Rider": "cashman"
+  },
+  "method": "POST",
+  "principalId": "",
+  "stage": "dev",
+  "cognitoPoolClaims": {
+    "sub": "9c784423-6a18-432f-8e9b-248f3f3baedf"
+  },
+  "enhancedAuthContext": {
+    "claims": ""
+  },
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Language": "en-GB,en;q=0.9,en-US;q=0.8,nl;q=0.7,de;q=0.6",
+    "Authorization": "eyJraWQiOiJXUFNGXC9QRFlBTEdzeDZYczNOeTNMMDc4cDM0bHpjcnU1OE1zNVB3S1M4az0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI5Yzc4NDQyMy02YTE4LTQzMmYtOGU5Yi0yNDhmM2YzYmFlZGYiLCJhdWQiOiI3bHA0ZDljanBrb20wcmV0cWRkbnMzdmVlcCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJldmVudF9pZCI6ImJjYTkyMzg5LTUxNjgtMTFlOC05NTI2LTVkYjgzMTgzZDkxNiIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNTI1NjM3MDkxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuZXUtd2VzdC0xLmFtYXpvbmF3cy5jb21cL2V1LXdlc3QtMV8yaFZ4cHF5a3EiLCJjb2duaXRvOnVzZXJuYW1lIjoiY2FzaG1hbiIsImV4cCI6MTUyNTY0NTY5NCwiaWF0IjoxNTI1NjQyMDk0LCJlbWFpbCI6ImJhcnRAa2FiaXNhLm5sIn0.YyqZtSW3oXdRjyQsOMFBTfvS2zovQ6nJC8uA0-m_G3nR2mth-phJpCpp9jIKEbnTC0j8f8N3flhcI_-JkWzBYHrFHc8R_KHZm5UKs4sjNyaDxAicGdD2JHKYYCSMrdSODGLPQAyBIDjSozpJzoU5l5XtFerJc4iuhfdRF0lUe9vWuLmQBCQurCodC8EYCBoKgqY_d10NstUrJaJT9hkuSAqZvs0XtJ2bonBgUnn8_uO6mUSjvBz2ojNqH0b5sssNlL3rTwy-jkT46Te04RQD-7LG8AbDYtm71SBEqGibh-Kaf-9JuU0fUrJiyfIDwG1ZcdlHC3mrEw3hXfgAleQ4sQ",
+    "cache-control": "no-cache",
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "NL",
+    "content-type": "application/json",
+    "Host": "ktmxk1pw9h.execute-api.eu-west-1.amazonaws.com",
+    "origin": "http://localhost:8080",
+    "pragma": "no-cache",
+    "Referer": "http://localhost:8080/app/ride.html",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36",
+    "Via": "2.0 eeee1e9393059101448ec0a1c21a3018.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "bm1TC1_LjOj_y_tH9lY4nadmz4d7mkGx_VGID_7OyCSTP-Hjyviy5g==",
+    "X-Amzn-Trace-Id": "Root=1-5aef80fb-5336bce856e42e48f44fd8a0",
+    "X-Forwarded-For": "62.45.246.121, 216.137.58.77",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "query": {},
+  "path": {},
+  "identity": {
+    "cognitoIdentityPoolId": "",
+    "accountId": "",
+    "cognitoIdentityId": "",
+    "caller": "",
+    "sourceIp": "62.45.246.121",
+    "accessKey": "",
+    "cognitoAuthenticationType": "",
+    "cognitoAuthenticationProvider": "",
+    "userArn": "",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36",
+    "user": ""
+  },
+  "stageVariables": {}
+}

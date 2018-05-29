@@ -20,7 +20,8 @@ export default class CognitoAuth {
         return this._authToken;
     }
 
-    _register(email, password, onSuccess, onFailure) {
+    _register(username, email, password, onSuccess, onFailure) {
+
         const dataEmail = {
             Name: 'email',
             Value: email
@@ -28,7 +29,7 @@ export default class CognitoAuth {
 
         const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
 
-        this._userPool.signUp(this._toUsername(email), password, [attributeEmail], null,
+        this._userPool.signUp(username, password, [attributeEmail], null,
             function signUpCallback(err, result) {
                 if (!err) {
                     onSuccess(result);
@@ -39,21 +40,21 @@ export default class CognitoAuth {
         );
     }
 
-    _signin(email, password, onSuccess, onFailure) {
+    _signin(username, password, onSuccess, onFailure) {
         const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
-            Username: this._toUsername(email),
+            Username: username,
             Password: password
         });
 
-        const cognitoUser = this.createCognitoUser(email);
+        const cognitoUser = this.createCognitoUser(username);
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: onSuccess,
             onFailure: onFailure
         });
     }
 
-    verify(email, code, onSuccess, onFailure) {
-        this._auth.createCognitoUser(email).confirmRegistration(code, true, function confirmCallback(err, result) {
+    verify(username, code, onSuccess, onFailure) {
+        this.createCognitoUser(username).confirmRegistration(code, true, function confirmCallback(err, result) {
             if (!err) {
                 onSuccess(result);
             } else {
@@ -72,27 +73,23 @@ export default class CognitoAuth {
         });
     }
 
-    createCognitoUser(email) {
+    createCognitoUser(username) {
         return new AmazonCognitoIdentity.CognitoUser({
-            Username: this._toUsername(email),
+            Username: username,
             Pool: this._userPool
         });
-    }
-
-    _toUsername(email) {
-        return email.replace('@', '-at-');
     }
 
     /*
      *  Event Handlers
      */
 
-    handleSignin(event, email, password) {
+    handleSignin(event, username, password) {
         event.preventDefault();
-        this._signin(email, password,
+        this._signin(username, password,
             function signinSuccess() {
                 console.log('Successfully Logged In');
-                window.location.href = 'ride.html';
+                window.location.href = '/app/ride.html';
             },
             function signinError(err) {
                 alert(err);
@@ -100,7 +97,7 @@ export default class CognitoAuth {
         );
     }
 
-    handleRegister(event, email, password, password2) {
+    handleRegister(event, username, email, password, password2) {
 
         const onSuccess = function registerSuccess(result) {
             const cognitoUser = result.user;
@@ -118,7 +115,7 @@ export default class CognitoAuth {
         event.preventDefault();
 
         if (password === password2) {
-            this._register(email, password, onSuccess, onFailure);
+            this._register(username, email, password, onSuccess, onFailure);
         } else {
             alert('Passwords do not match');
         }

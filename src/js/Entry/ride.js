@@ -9,6 +9,6 @@ $(function onDocReady() {
     $('#signOut').click(function() {
         rides._application.getAuth().signOut();
         alert("You have been signed out.");
-        window.location = "signin.html";
+        window.location = "/signin.html";
     });
 });

@@ -1,6 +1,5 @@
 pipeline {
   agent any
-
   stages {
 
     stage("Zip Lambda Function") {
@@ -23,10 +22,13 @@ pipeline {
     stage("S3 Sync") {
       steps {
         sh '''#!/bin/bash -l
-          aws s3 sync . s3://wild-rydes-api-dev-hosting --profile your-profile --delete --exclude "lambda/*" --exclude "infrastructure/*" --exclude ".git/*" --exclude ".idea/*" --exclude "*.iml" --exclude "Jenkinsfile" --exclude ".gitignore"  
+          jq '.IotEndpoint = "'$(aws iot describe-endpoint --output text)'"' src/build/config/api_config.json > src/build/config/api_config.tmp && mv src/build/config/api_config.tmp src/build/config/api_config.json
+        
+          aws s3 sync . s3://wild-rydes-api-dev-hosting --profile your-profile --delete --exclude "js/*"  
         '''
       }
     }
 
   }
+
 }

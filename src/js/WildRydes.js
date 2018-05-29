@@ -2,6 +2,7 @@ import Config from 'Config/Config';
 import CognitoAuth from 'Cognito/cognito-auth';
 
 const signinUrl = '/signin.html';
+const appPrefix = 'app/';
 
 export default class WildRydes {
 
@@ -36,7 +37,7 @@ export default class WildRydes {
     }
 
     handleAuthError(error) {
-        if(window.location.pathname !== signinUrl) {
+        if(window.location.pathname.startsWith(appPrefix)) {
             window.location.href = signinUrl;
         }
     }
@@ -45,7 +46,7 @@ export default class WildRydes {
         let result = null;
 
         $.ajax({
-            url: "/js/config/" + file + ".json",
+            url: "/build/config/" + file + ".json",
             dataType: 'json',
             async: false,
             success: function (data) {
@@ -61,7 +62,7 @@ export default class WildRydes {
         const apiConfig = this._getJsonConfig("api_config");
 
         if (apiConfig && authConfig && apiConfig.Region === authConfig.Region) {
-            return new Config(authConfig.userPoolId, authConfig.userPoolClientId, apiConfig.Region, apiConfig.ServiceEndpoint);
+            return new Config(authConfig.userPoolId, authConfig.userPoolClientId, apiConfig.Region, apiConfig.ServiceEndpoint, apiConfig.IotEndpoint);
         } else {
             $('#noCognitoMessage').show();
             console.log(apiConfig);

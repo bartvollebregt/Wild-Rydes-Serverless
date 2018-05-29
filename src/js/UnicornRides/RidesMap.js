@@ -1,7 +1,6 @@
 const GoogleMapsLoader = require('google-maps'); // only for common js environments
 
-
-
+GoogleMapsLoader.KEY = 'AIzaSyAQYRa4PTUwzH3lEROIjd7dONZkQv83LqU';
 
 export default class RidesMap {
 

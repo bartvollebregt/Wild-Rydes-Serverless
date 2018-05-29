@@ -11,18 +11,19 @@ $(function onDocReady() {
     });
 
     $('#signinForm').submit(event => application.getAuth().handleSignin(event,
-        $('#emailInputSignin').val(),
+        $('#usernameInputSignin').val(),
         $('#passwordInputSignin').val()
     ));
 
     $('#registrationForm').submit(event => application.getAuth().handleRegister(event,
+        $('#usernameInputRegister').val(),
         $('#emailInputRegister').val(),
         $('#passwordInputRegister').val(),
         $('#password2InputRegister').val()
     ));
 
     $('#verifyForm').submit(event => application.handleVerifyEmail(event,
-        $('#emailInputVerify').val(),
+        $('#usernameInputVerify').val(),
         $('#codeInputVerify').val()
     ));
 });

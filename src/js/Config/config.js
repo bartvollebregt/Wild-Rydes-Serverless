@@ -1,6 +1,6 @@
 export default class Config {
 
-    constructor(userPoolId, userPoolClientId, region, ServiceEndpoint) {
+    constructor(userPoolId, userPoolClientId, region, serviceEndpoint, iotEndpoint) {
         this._config = {
             cognito: {
                 userPoolId: userPoolId, // e.g. us-east-2_uXboG5pAb
@@ -8,7 +8,10 @@ export default class Config {
                 region: region // e.g. us-east-2
             },
             api: {
-                invokeUrl: ServiceEndpoint // e.g. https://rc7nyt4tql.execute-api.us-west-2.amazonaws.com/prod',
+                invokeUrl: serviceEndpoint // e.g. https://rc7nyt4tql.execute-api.us-west-2.amazonaws.com/prod',
+            },
+            iot: {
+                endpointUrl: iotEndpoint
             }
         };
     };

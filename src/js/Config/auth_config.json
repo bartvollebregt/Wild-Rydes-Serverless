@@ -1,7 +1,0 @@
-{
-  "userPoolArn": "arn:aws:cognito-idp:eu-west-1:702056794978:userpool/eu-west-1_8ZXtg8OH9",
-  "userPoolClientId": "6tdsje44a94ek472tsa9jidgqn",
-  "Region": "eu-west-1",
-  "userPoolId": "eu-west-1_8ZXtg8OH9",
-  "ServerlessDeploymentBucketName": "wild-rydes-auth-dev-serverlessdeploymentbucket-sxdndv72heqp"
-}
