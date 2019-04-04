@@ -3,7 +3,7 @@
 This application is based on the Wild Rydes tutorial for a serverless application by Connor Leech: 
 [http://connorleech.info/](http://connorleech.info/blog/Tutorial-for-building-a-Web-Application-with-Amazon-S3-Lambda-DynamoDB-and-API-Gateway/)
 
-It features so cool stuff to act as an example for:
+It features some cool stuff to act as an example for:
  - Authentication with Cognito UserPools
  - Website fully hostable in S3
  - Backend calls through API Gateway -> Lambda (-> DynamoDB)
